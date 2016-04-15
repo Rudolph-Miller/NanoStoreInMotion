@@ -1,6 +1,13 @@
 module NanoStore
   module AssociationClassMethods
+    def bags
+      @bags
+    end
+
     def bag(name)
+      @bags ||= []
+      @bags << name
+
       define_method(name) do |*args, &block|
         return _bags[name] if _bags[name]
 

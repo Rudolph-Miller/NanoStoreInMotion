@@ -43,7 +43,8 @@ module NanoStore
     end
 
     def attribute(name)
-      attributes << name
+      @attributes ||= []
+      @attributes << name
 
       define_method(name) do |*args, &block|
         self.info[name]
@@ -91,5 +92,4 @@ module NanoStore
     include NanoStore::AssociationInstanceMethods
     extend NanoStore::AssociationClassMethods
   end
-
 end
